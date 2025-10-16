@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   display: flex;
   justify-content: center;
@@ -6,42 +7,62 @@ body {
 
 :root {
   --max-size: 1500px;
-  --main-color: #F8F5E8;
+  --main-color: #f8f5e8;
+  --accent: #f25c2d;
 }
 
 body {
   flex-direction: column;
+  gap: 100px;
   font-family: "Inter", sans-serif;
+  background-color: #e7e7e8;
+  margin: 0;
+  padding: 0;
 }
 
+/* ================= NAVBAR ================= */
 .navBar {
   background-color: var(--main-color);
-  width: 1000px;
+  width: 100%;
+  max-width: var(--max-size);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   padding-inline: 50px;
   padding-block: 10px;
+  box-sizing: border-box;
 }
-.navBar img {
+.navBar__logo img {
   height: 50px;
 }
-.navBar ul {
+.navBar__item ul {
   display: flex;
-  list-style-type: none;
+  list-style: none;
   gap: 50px;
+  margin: 0;
+  padding: 0;
 }
-.navBar ul li {
+.navBar__item ul li {
   text-transform: capitalize;
   font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.navBar__item ul li:hover {
+  color: var(--accent);
 }
 
+/* ================= INTRO ================= */
 .intro {
   background-image: url("/images/bg.png");
-  width: 1100px;
+  width: 100%;
+  max-width: var(--max-size);
   height: 700px;
+  margin-top: -100px;
   background-position: center;
+  background-size: cover;
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
   padding: 50px;
@@ -59,6 +80,7 @@ body {
   text-transform: uppercase;
   width: 700px;
   margin-top: 150px;
+  line-height: 1.1;
 }
 .intro__inner input {
   width: 300px;
@@ -66,16 +88,296 @@ body {
   border: none;
   border-radius: 5px;
   padding-left: 20px;
+  outline: none;
 }
 .intro__inner button {
-  background-color: rgb(255, 124, 16);
-  padding: 15px;
+  background-color: var(--accent);
+  padding: 15px 25px;
   width: max-content;
   border: none;
   border-radius: 8px;
-  padding-inline: 20px;
   color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.intro__inner button:hover {
+  background: #e14c1c;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(242, 92, 45, 0.6);
+}
+.intro__inner button:active {
+  transform: scale(0.98);
+}
+
+/* ================= RECIPES ================= */
+.recipes {
+  background-color: #f4f5f5;
+  width: 100%;
+  max-width: var(--max-size);
+  border-radius: 40px;
+  padding: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.recipes__item {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 280px;
+  margin: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.recipes__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+.recipes__item img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+.recipes__item .recipes__detail {
+  padding: 16px;
+  text-align: center;
+  color: #333;
+  /* Thông tin thời gian, độ khó, suất ăn */
+  /* Tag */
+  /* Nút xem công thức */
+}
+.recipes__item .recipes__detail .recipes__name {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+.recipes__item .recipes__detail .recipes__vote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.recipes__item .recipes__detail .recipes__vote i {
+  color: #f5b301;
+}
+.recipes__item .recipes__detail .recipes__vote span {
+  font-weight: 600;
+  color: #000;
+}
+.recipes__item .recipes__detail .recipes__vote p {
+  margin: 0;
+  color: #888;
+}
+.recipes__item .recipes__detail .recipes__time,
+.recipes__item .recipes__detail .recipes__hard,
+.recipes__item .recipes__detail .recipes__eat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+.recipes__item .recipes__detail .recipes__time i,
+.recipes__item .recipes__detail .recipes__hard i,
+.recipes__item .recipes__detail .recipes__eat i {
+  font-size: 15px;
+  color: var(--accent);
+}
+.recipes__item .recipes__detail .recipes__time span,
+.recipes__item .recipes__detail .recipes__hard span,
+.recipes__item .recipes__detail .recipes__eat span {
   font-weight: 500;
+}
+.recipes__item .recipes__detail .recipes__time p,
+.recipes__item .recipes__detail .recipes__hard p,
+.recipes__item .recipes__detail .recipes__eat p {
+  margin: 0;
+  color: #333;
+}
+.recipes__item .recipes__detail .recipes__tags {
+  margin-top: 10px;
+}
+.recipes__item .recipes__detail .recipes__tags button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin: 4px 4px 0;
+  background: #f4f4f4;
+  color: #555;
+  transition: background 0.2s ease;
+}
+.recipes__item .recipes__detail .recipes__tags button:hover {
+  background: #e0e0e0;
+}
+.recipes__item .recipes__detail .recipes__btn {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0;
+  margin-top: 15px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.recipes__item .recipes__detail .recipes__btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.3) 100%);
+  transform: skewX(-25deg);
+}
+.recipes__item .recipes__detail .recipes__btn:hover {
+  background: #e14c1c;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(242, 92, 45, 0.6);
+}
+.recipes__item .recipes__detail .recipes__btn:hover::before {
+  animation: shine 0.8s forwards;
+}
+.recipes__item .recipes__detail .recipes__btn:active {
+  transform: scale(0.97);
+}
+
+.recipes__item {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.recipes__item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hiệu ứng ánh sáng chạy qua nút */
+@keyframes shine {
+  from {
+    left: -75%;
+  }
+  to {
+    left: 125%;
+  }
+}
+/* ===============================
+   🌐 Responsive Design
+   =============================== */
+/* 🔹 Tổng thể container */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #E7E7E8;
+}
+
+/* 🔹 Căn chỉnh giới hạn chiều rộng cho nội dung chính */
+.navBar,
+.intro,
+.recipes {
+  width: 100%;
+  max-width: 1500px;
+  box-sizing: border-box;
+}
+
+/* ------------------------------
+   🟠 Tablet (<= 992px)
+   ------------------------------ */
+@media (max-width: 992px) {
+  /* Navbar: đổi layout hàng ngang -> cột */
+  .navBar {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .navBar__item ul {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  /* Intro */
+  .intro {
+    height: auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .intro__inner p {
+    font-size: 32px;
+    width: auto;
+    margin-top: 80px;
+  }
+  .intro__inner input {
+    width: 80%;
+    max-width: 400px;
+  }
+  /* Recipes grid */
+  .recipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+  }
+  .recipes__item {
+    width: 40%;
+    min-width: 280px;
+  }
+}
+/* ------------------------------
+   🟡 Mobile (<= 600px)
+   ------------------------------ */
+@media (max-width: 600px) {
+  /* Navbar */
+  .navBar {
+    padding: 15px;
+  }
+  .navBar__item ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  /* Intro */
+  .intro__inner p {
+    font-size: 24px;
+    margin-top: 40px;
+  }
+  .intro__inner input {
+    width: 100%;
+    max-width: none;
+  }
+  .intro__inner button {
+    width: 100%;
+    margin-top: 10px;
+  }
+  /* Recipes layout */
+  .recipes {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .recipes__item {
+    width: 100%;
+    max-width: 360px;
+  }
+  /* Buttons & texts nhỏ hơn cho phù hợp */
+  .recipes__detail button {
+    font-size: 12px;
+  }
+  .recipes__name {
+    font-size: 16px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
